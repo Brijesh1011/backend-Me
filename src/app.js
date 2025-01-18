@@ -10,9 +10,9 @@ app.use(cors({
 }))
 
 app.use(express.json({limit:"16kb"}))
-app.use(express.urlencoded({extended:true,limit:"16kb"}))
+app.use(express.urlencoded({extended:true,limit:"16kb"})) //convert space  or spaicial charecter from url like %20
 
-app.use(express.static("public"))
+app.use(express.static("public")) //some file store or anything store
 app.use(cookieParser())
 
 
