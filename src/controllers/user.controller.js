@@ -256,14 +256,14 @@ const reqisterUser=asyncHandler( async(req,res)=>{
 const getCurrentuser=asyncHandler(async (req,res)=>{
     return res
     .status(200)
-    .json(200,req.user,"current User featched successfully")
+    .json(new ApiResponse(200,req.user,"current User featched successfully"))
 })
 
 const updateAccountDetails=asyncHandler(async(req,res)=>{
     const {fullName,email}=req.body
 
     //change a user full name and email
-    if(!fullName || !email){
+    if(!(fullName || email)){
         throw new ApiError(400,"All fields are required")
     }
 
