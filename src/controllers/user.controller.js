@@ -471,6 +471,23 @@ const getWatchHistory=asyncHandler(async(req,res)=>{
 
 })
 
+const deleteuser=asyncHandler(async(req,res)=>{
+
+   const {ispassword}=req.body 
+   const user =await User.findById(req.user?._id)
+   const password=await user.isPasswordCorrect(ispassword)
+
+   if(!password){
+    throw new ApiError(400,"for delete password is worong")
+   }
+    
+   await User.deleteOne(user)
+   return res
+   .status(200)
+   .json(new ApiResponse(200,{},"user deleted successfully"))
+
+})
+
 export {
     reqisterUser,
     loginUser,
@@ -482,5 +499,6 @@ export {
     updateuseravatar,
     updateuserCoverImage,
     getUserChannelProfile,
-    getWatchHistory
+    getWatchHistory,
+    deleteuser
 }

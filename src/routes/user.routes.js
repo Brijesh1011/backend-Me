@@ -5,7 +5,8 @@ import { reqisterUser,loginUser,logoutUser,refreshAccessToken,changeCurrentpassw
     updateuseravatar,
     updateuserCoverImage,
     getUserChannelProfile,
-    getWatchHistory} from "../controllers/user.controller.js";
+    getWatchHistory,
+    deleteuser} from "../controllers/user.controller.js";
 import { upload } from "../middlewares/multer.middleware.js";
 import { verifyJWT } from "../middlewares/auth.middleware.js"
 
@@ -38,6 +39,7 @@ router.route("/register").post(
     router.route("/cover-image").patch(verifyJWT,upload.single("coverImage"),updateuserCoverImage)
     router.route("/c/:username").get(verifyJWT,getUserChannelProfile)
     router.route("/history").get(verifyJWT,getWatchHistory)
+    router.route("/deleteuser").post(verifyJWT,deleteuser)
 
 
 export default router
